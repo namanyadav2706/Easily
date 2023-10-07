@@ -1,0 +1,15 @@
+h2{
+    color: lightcoral !important;
+}
+.card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 25px 0px;
+}
