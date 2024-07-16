@@ -1,4 +1,5 @@
 import multer from 'multer';
+
 const storageConfig = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/resume/');
@@ -8,6 +9,7 @@ const storageConfig = multer.diskStorage({
         cb(null, name);
     },
 });
+
 export const uploadFile = multer({
     storage: storageConfig,
 });
