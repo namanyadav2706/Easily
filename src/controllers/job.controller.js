@@ -58,14 +58,26 @@ class JobController{
         res.render('apply-job',{Id:id,Job:job});
     }
 
-    async filterApplications(req,res){
-        const startDate = req.params.startDate;
-        const endDate = req.params.endDate;
+    async filterJobs(req,res){
+        const {minDate, maxDate, company} = req.body;
+        const startDate = new Date(minDate)
+        const endDate = new Date(maxDate)
 
-        const result = await ApplicationModel.find({date:{$gt:startDate}})
+        
+        const jobs = await JobModel.find(
+            {date:{$gt:startDate,$lt:endDate},company:company}
+            )
 
-        return res.status(200).send(result)
+        // const jobs = await JobModel.find({$and:[
+        //     {company:company},
+        //     {date:{$gt:startDate}},
+        //     {date:{$lt:endDate}}
+        //     ]
+        // })
+        
+        return res.status(200).send({jobs});
     }
+
 }
 
 export default JobController;
